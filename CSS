@@ -1,0 +1,265 @@
+:root {
+    --radius-lg: 20px;
+    --radius-md: 16px;
+    --shadow-sm: 0 4px 12px rgba(0,0,0,0.1);
+    --shadow-md: 0 6px 18px rgba(0,0,0,0.12);
+    --accent: #4f46e5;
+    --accent-dark: #3730a3;
+    --text-main: #222;
+    --text-muted: #666;
+    --bg: #f4f4f9;
+}
+
+* { box-sizing: border-box; }
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0;
+    background-color: var(--bg);
+    color: var(--text-main);
+}
+2. Navigation Bar (.navbar, .nav-links, .nav-toggle)
+Styles the sticky header navigation bar, links, and hamburger menu toggle button.
+
+CSS
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 32px;
+    background: #fff;
+    box-shadow: var(--shadow-sm);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.nav-logo {
+    font-weight: bold;
+    font-size: 18px;
+    color: var(--text-main);
+    text-decoration: none;
+    letter-spacing: 0.5px;
+}
+
+.nav-links {
+    display: flex;
+    gap: 28px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: var(--text-main);
+    font-size: 14px;
+    font-weight: 600;
+    padding-bottom: 4px;
+    border-bottom: 2px solid transparent;
+    transition: border-color 0.2s ease, color 0.2s ease;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+    color: var(--accent);
+    border-bottom-color: var(--accent);
+}
+
+.nav-toggle {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 4px;
+}
+
+.nav-toggle span {
+    width: 24px;
+    height: 2px;
+    background: var(--text-main);
+}
+3. Media Query for Mobile Navigation
+Changes the navigation layout to a mobile drop-down menu on screens smaller than 700px.
+
+CSS
+@media (max-width: 700px) {
+    .nav-toggle { display: flex; }
+
+    .nav-links {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: #fff;
+        flex-direction: column;
+        gap: 0;
+        box-shadow: var(--shadow-sm);
+    }
+
+    .nav-links.open { display: flex; }
+
+    .nav-links a {
+        padding: 14px 24px;
+        border-bottom: 1px solid #eee;
+    }
+}
+4. Page & Profile Sidebar Layout
+Styles the main flex container holding both the profile and the gallery side-by-side.
+
+CSS
+.page {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 40px;
+    padding: 40px;
+    flex-wrap: wrap;
+}
+
+.profile-sidebar {
+    width: 260px;
+    background: #fff;
+    padding: 24px;
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-sm);
+}
+
+.profile-name {
+    font-size: 22px;
+    font-weight: bold;
+    margin: 0 0 4px 0;
+}
+
+.profile-handle {
+    font-size: 14px;
+    color: var(--text-muted);
+    margin-bottom: 12px;
+}
+
+.profile-bio {
+    font-size: 14px;
+    color: #444;
+    line-height: 1.5;
+    margin-bottom: 20px;
+}
+
+.social-links {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.social-links a {
+    text-decoration: none;
+    color: var(--accent);
+    font-size: 14px;
+    font-weight: bold;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: color 0.2s ease;
+}
+
+.social-links a:hover {
+    color: var(--accent-dark);
+}
+5. Artwork Gallery & Image Box
+Styles the main gallery card, the images, next/prev arrow buttons, indicator dots, and details panel.
+
+CSS
+.card-container {
+    width: 440px;
+    max-width: 100%;
+    background: #fff;
+    padding: 24px;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+    text-align: center;
+}
+
+.image-box {
+    position: relative;
+    width: 100%;
+    height: 560px;
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    cursor: pointer;
+    touch-action: pan-y;
+    user-select: none;
+}
+
+.image-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+    pointer-events: none;
+}
+
+.image-box:hover img {
+    transform: scale(1.03);
+}
+
+.nav-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0, 0, 0, 0.5);
+    color: #fff;
+    border: none;
+    padding: 12px 16px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 18px;
+    user-select: none;
+}
+
+.nav-btn:hover {
+    background: rgba(0, 0, 0, 0.8);
+}
+
+.prev-btn { left: 12px; }
+.next-btn { right: 12px; }
+
+.dots {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 14px;
+}
+
+.dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #d8d8e6;
+    cursor: pointer;
+    border: none;
+    padding: 0;
+}
+
+.dot.active {
+    background: var(--accent);
+}
+
+.description-panel {
+    display: none;
+    margin-top: 16px;
+    padding: 14px;
+    background: #eef2ff;
+    border-radius: 10px;
+    color: #333;
+    font-size: 14px;
+    text-align: left;
+}
+
+.click-hint {
+    font-size: 12px;
+    color: #777;
+    margin-top: 12px;
+    margin-bottom: 0;
+}
